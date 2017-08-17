@@ -1,0 +1,15 @@
+{
+  "name" : "wcs-node-angular",
+  "version" : "0.0.0",
+  "description" : "WCS the new way",
+  "main": "server.js",
+  "author" : "XigniteX",
+  "dependencies" : {
+    "express" : "~4.7.2",
+    "mongoose" : "~3.6.2",
+    "morgan" : "~1.2.2",
+    "body-parser" : "~1.5.2",
+    "method-override": "~2.1.2",
+    "request": "~2.81.0"
+  }
+}
