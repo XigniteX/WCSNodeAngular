@@ -43,14 +43,24 @@
       <button type="submit" class="btn btn-primary btn-lg" ng-click="search()">Search</button>
     </form>
 
-    <div ng-repeat="product in results">
+    <div ng-repeat="product in results" ng-show="searchResults">
 
-      <label>
+      <label ng-click="getProduct({{ product.uniqueID }})">
           {{ product.uniqueID}} - {{ product.name }} - {{ product.price_offer }}
       </label>
       <div>
           <i>{{ product.shortDescription}}</i>
       </div>
+    </div>
+    <div ng-show="PDP">
+      Product details<br/>
+
+      {{ product.name }} - <label ng-click="orderProduct({{ product.uniqueID }})">Bestellen</label> <br/>
+      <img ng-src="http://static-dev.nextail.nl/{{product.fullImage}}" alt="Description" /> <br/>
+      {{ product.longDescription }}
+
+    </br/>
+
     </div>
   </div>
 </body>

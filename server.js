@@ -49,7 +49,6 @@ app.get('/api/search/:searchTerm', function(req, res) {
 })
 
 app.get('/api/menu', function(req, res) {
-  console.log(req.body);
   request.get({
     uri: baseURL + 'search/resources/categoryview/@top',
     headers: {
@@ -60,6 +59,15 @@ app.get('/api/menu', function(req, res) {
       depthAndLimit: '*,*'
     }
 
+  }).pipe(res);
+})
+
+app.get('/api/product/:productId', function(req, res){
+  request.get({
+    uri: baseURL + 'search/resources/productview/byId/'+ req.params.productId,
+    headers: {
+      'apiKey': apiKey
+    },
   }).pipe(res);
 })
 
@@ -78,6 +86,7 @@ app.get('/api/guestsession', function(req, res) {
   }).pipe(res);
 
 })
+
 app.post('/api/cart', function(req, res) {
   var formData = {
     orderId: '.',

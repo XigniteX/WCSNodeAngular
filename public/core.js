@@ -3,6 +3,7 @@ var wcsSearch = angular.module('wcsSearch', []);
 
 function mainController($scope, $http) {
   $scope.formData = {};
+  $scope.se
 
   // $http.get('/api/menu')
   //   .success(function(data) {
@@ -28,10 +29,31 @@ $scope.search = function() {
   $http.get('/api/search/' + $scope.formData.search)
     .success(function(data) {
       $scope.results = data.catalogEntryView;
-      console.log(data);
+      $scope.PDP = false;
+      $scope.searchResults = true;
+
     })
     .error(function(data) {
       console.log('Error: ' + data);
     });
 };
+
+$scope.getProduct = function(productId) {
+  $scope.results = {};
+  $http.get('/api/product/' + productId)
+    .success(function(data) {
+      $scope.searchResults = false;
+      $scope.PDP = true;
+      $scope.product = data.catalogEntryView[0];
+
+
+    })
+    .error(function(data) {
+      console.log('Error: ' + data);
+    });
+};
+
+$scope.orderProduct = function(productId){
+  console.log("order product: " + productId);
+}
 }

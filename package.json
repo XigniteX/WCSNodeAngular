@@ -1,17 +1,26 @@
 {
-  "name" : "wcs-node-angular",
-  "version" : "0.0.0",
-  "description" : "WCS the new way",
+  "name": "wcs-node-angular",
+  "version": "0.0.0",
+  "description": "WCS the new way",
   "main": "server.js",
-  "author" : "XigniteX",
-  "dependencies" : {
-    "express" : "~4.7.2",
+  "author": "XigniteX",
+  "dependencies": {
+    "express": "~4.7.2",
     "express-session": "~1.7.6",
-    "mongoose" : "~3.6.2",
-    "morgan" : "~1.2.2",
+    "mongoose": "~3.6.2",
+    "morgan": "~1.2.2",
     "morgan-body": "~0.10.5",
-    "body-parser" : "~1.5.2",
+    "body-parser": "~1.5.2",
     "method-override": "~2.1.2",
     "request": "~2.81.0"
+  },
+  "devDependencies": {
+    "mocha": "^3.5.0",
+    "chai-http":"^2.0.1",
+    "chai":"^3.5.0"
+
+  },
+  "scripts": {
+    "test": "mocha"
   }
 }
