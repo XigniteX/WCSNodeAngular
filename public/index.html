@@ -38,6 +38,9 @@
         </div>
       </div>
     </div>
+    <div>
+      {{ cart }}
+    </div>
     <form>
       <input type="text" class="form-control input-lg text-center" placeholder="" ng-model="formData.search">
       <button type="submit" class="btn btn-primary btn-lg" ng-click="search()">Search</button>
@@ -59,7 +62,7 @@
       <img ng-src="http://static-dev.nextail.nl/{{product.fullImage}}" alt="Description" /> <br/>
       {{ product.longDescription }}
 
-  
+
 
     </div>
   </div>

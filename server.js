@@ -81,9 +81,7 @@ app.post('/api/guestsession', function(req, res) {
     body.push(chunk);
   }).on('end', () => {
     body = Buffer.concat(body).toString();
-    console.log(body);
-    console.log(body.WCToken);
-    console.log(body.WCTrustedToken);
+  
   }).pipe(res);
 
 })
@@ -120,6 +118,19 @@ app.post('/api/cart', function(req, res) {
     var headers = res.headers
     var statusCode = res.statusCode
 
+  }).pipe(res);
+})
+
+
+app.get('/api/cart', function(req,res){
+  var url = baseURL + 'wcs/resources/cart/v3/@self';
+  request.get({
+    uri: url,
+    headers: {
+      'apiKey': apiKey,
+      'WCToken': req.headers.wctoken,
+      'WCTrustedToken': req.headers.wctrustedtoken
+    },
   }).pipe(res);
 })
 

@@ -1,9 +1,8 @@
-var wcsSearch = angular.module('wcsSearch', []);
+var wcsSearch = angular.module('wcsSearch', ['ngCookies']);
 
-
-function mainController($scope, $http) {
+function mainController($scope, $http,$cookies) {
   $scope.formData = {};
-  $scope.se
+
 
   // $http.get('/api/menu')
   //   .success(function(data) {
@@ -14,15 +13,17 @@ function mainController($scope, $http) {
   //     console.log('Error: ' + data);
   //   });
 
-  $http.get('/api/guestsession')
+  $http.post('/api/guestsession')
   .success(function(data){
       console.log('gelukt');
-      $scope.token = data.WCToken;
-      $scope.trustedToken = data.WCTrustedToken;
+      console.log(data);
+      $cookies.token = data.WCToken;
+      $cookies.trustedToken = data.WCTrustedToken;
   })
   .error(function(data){
     console.log('error');
   });
+
 
 $scope.search = function() {
   $scope.results = {};
@@ -53,7 +54,44 @@ $scope.getProduct = function(productId) {
     });
 };
 
-$scope.orderProduct = function(productId){
-  console.log("order product: " + productId);
-}
+$scope.orderProduct = function(sds) {
+    console.log("ordering product: " + $scope.product.uniqueID);
+    var postData =  {
+      quantity: '1',
+      productId: $scope.product.uniqueID
+    };
+    var config = {
+      headers: {
+        'wctoken':$cookies.token,
+        'wctrustedtoken':   $cookies.trustedToken
+      }
+    }
+    $http.post('/api/cart', postData,config)
+      .success(function(data){
+        getCart();
+      })
+      .error(function(data){
+        console.log("mislukt");
+        console.log(data);
+      })
+};
+
+getCart = function() {
+
+    var config = {
+      headers: {
+        'wctoken':$cookies.token,
+        'wctrustedtoken':   $cookies.trustedToken
+      }
+    }
+    $http.get('/api/cart',config)
+      .success(function(data){
+        $scope.cart = data
+      })
+      .error(function(data){
+        console.log("mislukt");
+        console.log(data);
+      })
+};
+
 }
