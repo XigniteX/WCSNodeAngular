@@ -61,9 +61,9 @@ app.get('/api/menu', function(req, res) {
   }).pipe(res);
 })
 
-app.get('/api/product/:productId', function(req, res){
+app.get('/api/product/:productId', function(req, res) {
   request.get({
-    uri: baseURL + 'search/resources/productview/byId/'+ req.params.productId,
+    uri: baseURL + 'search/resources/productview/byId/' + req.params.productId,
     headers: {
       'apiKey': apiKey
     },
@@ -81,7 +81,7 @@ app.post('/api/guestsession', function(req, res) {
     body.push(chunk);
   }).on('end', () => {
     body = Buffer.concat(body).toString();
-  
+
   }).pipe(res);
 
 })
@@ -89,7 +89,7 @@ app.post('/api/guestsession', function(req, res) {
 app.post('/api/cart', function(req, res) {
   var url = baseURL + 'wcs/resources/cart'
 
-  var postData =  {
+  var postData = {
     orderId: '.',
     orderItem: [{
       quantity: req.body.quantity,
@@ -110,7 +110,7 @@ app.post('/api/cart', function(req, res) {
     }
   }
 
-  request(options, function (err, res, body) {
+  request(options, function(err, res, body) {
     if (err) {
       console.error('error posting json: ', err)
       throw err
@@ -122,7 +122,7 @@ app.post('/api/cart', function(req, res) {
 })
 
 
-app.get('/api/cart', function(req,res){
+app.get('/api/cart', function(req, res) {
   var url = baseURL + 'wcs/resources/cart/v3/@self';
   request.get({
     uri: url,
