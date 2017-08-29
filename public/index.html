@@ -39,8 +39,12 @@
       </div>
     </div>
     <div>
-      {{ cart }}
+      <div ng-repeat="product in cart.orderItem">
+        {{ product.productName }} - {{ product.quantity }}
+      </div>
+      total: {{ cart.grandTotal }}
     </div>
+    <test></test>
     <form>
       <input type="text" class="form-control input-lg text-center" placeholder="" ng-model="formData.search">
       <button type="submit" class="btn btn-primary btn-lg" ng-click="search()">Search</button>
@@ -58,8 +62,6 @@
     <div ng-show="PDP">
       Product details<br/> {{ product.name }} - <label ng-click="orderProduct({{ product.uniqueID }})">Bestellen</label> <br/>
       <img ng-src="http://static-dev.nextail.nl/{{product.fullImage}}" alt="Description" /> <br/> {{ product.longDescription }}
-
-
 
     </div>
   </div>

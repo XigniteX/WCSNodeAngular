@@ -1,5 +1,6 @@
 var wcsSearch = angular.module('wcsSearch', ['ngCookies']);
 
+
 function mainController($scope, $http, $cookies) {
   $scope.formData = {};
 
